@@ -50,7 +50,7 @@ const GreetingCardPreview = ({ cardData }) => {
           {cardData.from}
         </div>
       </div>
-      <button onClick={handleDownload}>Download Card</button>
+      <button onClick={handleDownload} className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold w-full rounded focus:outline-none focus:shadow-outline">Download Card</button>
     </div>
   );
 };

@@ -6,7 +6,10 @@ const GreetingCardForm = ({ onSubmit }) => {
   const [dear, setDear] = useState("");
   const [message, setMessage] = useState("");
   const [from, setFrom] = useState("");
-  const [errors, setErrors] = useState({});
+  const [errorImage, setErrorImage] = useState("");
+  const [errorDear, setErrorDear] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [errorFrom, setErrorFrom] = useState("");
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
@@ -15,53 +18,63 @@ const GreetingCardForm = ({ onSubmit }) => {
     },
   });
 
-  const validate = () => {
-    const errors = {};
-    if (!image) errors.image = "Image is required";
-    if (!dear.trim()) errors.message = "Dear is required";
-    if (!message.trim()) errors.message = "Message is required";
-    if (!from.trim()) errors.message = "From is required";
-    return errors;
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
+    if (!image) {
+      setErrorImage("Image is required");
+      return
+    }
+    if (!dear.trim()) {
+      setErrorDear("Dear is required");
+      return
+    }
+    if (!message.trim()) {
+      setErrorMessage("Message is required");
+      return
+    }
+    if (!message.trim()) {
+      setErrorFrom("From is required");
+      return
     }
     onSubmit({ image, dear, message, from });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form">
+    <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <div {...getRootProps()} className="dropzone">
         <input {...getInputProps()} />
         <p>Drag & drop an image here, or click to select one</p>
-        {errors.image && <span className="error">{errors.image}</span>}
+        <span className="error">{errorImage}</span>
       </div>
       {image && <img src={image} alt="Preview" className="preview-image" />}
+      <label for="dear" className="block text-gray-700 text-sm font-bold mb-2">Dear</label>
       <input
         placeholder="Dear"
         value={dear}
         onChange={(e) => setDear(e.target.value)}
-        data-testid="dear"
+        id="dear"
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       />
+      <span className="error">{errorDear}</span>
+      <label for="message" className="block text-gray-700 text-sm font-bold mb-2">Message</label>
       <textarea
         placeholder="Message"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        data-testid="message"
+        id="message"
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       />
+      <span className="error">{errorMessage}</span>
+      <label for="from" className="block text-gray-700 text-sm font-bold mb-2">From</label>
       <input
         placeholder="From"
         value={from}
         onChange={(e) => setFrom(e.target.value)}
-        data-testid="from"
+        id="from"
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       />
-      {errors.message && <span className="error">{errors.message}</span>}
-      <button type="submit">Generate Card</button>
+      <span className="error">{errorFrom}</span>
+      <button type="submit" className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold w-full rounded focus:outline-none focus:shadow-outline">Generate Card</button>
     </form>
   );
 };
