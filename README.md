@@ -1,12 +1,17 @@
 # test_otto
+git clone https://github.com/cisnatinnov/test_otto.git
+## fe
+1. execute 'cd greeting-card-generator'
+2. execute 'npm install' to install depedencies
+3. execute 'npm start' to start the app
+4. execute 'npm run test' for unit test
 ## be
-1. git clone https://github.com/cisnatinnov/test_otto.git
-2. execute 'cd be'
-3. execute 'npm install' to install depedencies
-4. change .env.example into .env and also change the value as you need
-5. execute 'npm start' for production
-6. execute 'npm run dev' for development, will automatically restart every time there is a code change
-7. run 'npm run test' for unit testing
+1. execute 'cd be'
+2. execute 'npm install' to install depedencies
+3. change .env.example into .env and also change the value as you need
+4. execute 'npm start' for production
+5. execute 'npm run dev' for development, will automatically restart every time there is a code change
+6. run 'npm run test' for unit testing
 
 ## migration has 2 options
 1. (recommended) "sequelize.sync({ force: true }) // Use force: true to drop and recreate tables for migration"
