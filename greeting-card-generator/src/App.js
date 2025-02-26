@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Greeting Card Generator</h1>
+      <h1 className="text-center mb-4">Greeting Card Generator</h1>
       <div className="container">
         <GreetingCardForm onSubmit={handleFormSubmit} />
         <GreetingCardPreview cardData={cardData} />
