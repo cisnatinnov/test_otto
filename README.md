@@ -11,7 +11,7 @@
 ## migration has 2 options
 1. (recommended) "sequelize.sync({ force: true }) // Use force: true to drop and recreate tables for migration"
 2. execute "npm run migrate"
-note: must empty the database before choose another option
+3. note: must empty the database before choose another option
 
 ## Rate Limit Explanation
 windowMs:

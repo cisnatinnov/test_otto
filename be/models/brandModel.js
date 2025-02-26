@@ -11,9 +11,17 @@ const Brand = sequelize.define('brands', {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true
+  },
+  created_at: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW, // Set default value to current timestamp
+  },
+  updated_at: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW, // Set default value to current timestamp
   }
 }, {
-  timestamps: true, // Adds createdAt and updatedAt fields
+  timestamps: false, // Adds createdAt and updatedAt fields
 })
 
 module.exports = Brand;

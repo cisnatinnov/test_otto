@@ -10,9 +10,17 @@ const Transaction = sequelize.define('transactions', {
   total_points: {
     type: DataTypes.INTEGER,
     allowNull: false,
+  },
+  created_at: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW, // Set default value to current timestamp
+  },
+  updated_at: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW, // Set default value to current timestamp
   }
 }, {
-  timestamps: true, // Adds createdAt and updatedAt fields
+  timestamps: false, // Adds createdAt and updatedAt fields
 })
 
 module.exports = Transaction;
