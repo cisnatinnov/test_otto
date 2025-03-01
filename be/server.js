@@ -9,7 +9,7 @@ const sequelize = require('./configs/database');
 const port = process.env.PORT;
 
 // Sync Sequelize Models
-sequelize.sync({ force: true }) // Use force: true to drop and recreate tables for development only and migration
+sequelize.sync({ force: false }) // Use force: true to drop and recreate tables for development only and migration
 .then(() => {
   console.log('Database synced successfully!');
 })

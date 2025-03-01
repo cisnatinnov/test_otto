@@ -14,8 +14,8 @@ const GreetingCardPreview = ({ cardData }) => {
   };
 
   return (
-    <div className="shadow-md rounded">
-      <div ref={cardRef} className="card">
+    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8">
+      <div ref={cardRef} className="w-full h-96 border-2 border-dashed">
         {cardData.image && (
           <img src={cardData.image} alt="Card Background" className="card-image" />
         )}

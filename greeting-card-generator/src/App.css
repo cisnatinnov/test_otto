@@ -2,13 +2,6 @@
   padding: 20px;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
 .dropzone {
   border: 2px dashed #ccc;
   padding: 20px;
@@ -84,4 +77,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* width */
+::-webkit-scrollbar {
+  display: none;
 }

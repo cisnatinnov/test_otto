@@ -5,6 +5,7 @@ const { success, created, error } = require('../middlewares/response')
 const { celebrate } = require('celebrate')
 const { brandSchema } = require('../middlewares/schema')
 const Brand = require('../models/brandModel')
+const moment = require('moment')
 
 app.post('', celebrate({body: brandSchema}), async(req, res) => {
   let { name } = req.body
@@ -64,7 +65,14 @@ app.get('', async(_req, res) => {
   try {
     const brand = await Brand.findAll()
     let brands = brand.map(brand => brand.toJSON());
-    success(res, '', brands)
+    let lists = brands.map(list => {
+      return {
+        ...list,
+        createdAt: moment(list.created_at).format('LLLL'),
+        updatedAt: moment(list.updated_at).format('LLLL')
+      }
+    })
+    success(res, '', lists)
   } catch (err) {
     error(res, err)
   }

@@ -1,28 +1,22 @@
-import React, { useState } from "react";
-import GreetingCardForm from "./components/GreetingCardForm";
-import GreetingCardPreview from "./components/GreetingCardPreview";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import GreetingCardGenerator from "./pages/GreetingCardGenerator";
+import Home from "./pages/Home";
+import Layout from "./pages/Layout";
+import BrandData from "./pages/brand/BrandData";
 
 function App() {
-  const [cardData, setCardData] = useState({
-    image: null,
-    dear: "",
-    message: "",
-    from: ""
-  });
-
-  const handleFormSubmit = (data) => {
-    setCardData(data);
-  };
-
   return (
-    <div className="App">
-      <h1 className="text-center mb-4">Greeting Card Generator</h1>
-      <div className="container">
-        <GreetingCardForm onSubmit={handleFormSubmit} />
-        <GreetingCardPreview cardData={cardData} />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="greeting_card" element={<GreetingCardGenerator />} />
+          <Route path="brands" element={<BrandData />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
