@@ -1,6 +1,17 @@
-const Lists = ({ data, columns }) => {
+import { faEraser, faPencil } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+const Lists = ({ data, columns, onEdit, onDelete }) => {
   if (!data || data.length === 0) {
-    return <div>No data available</div>;
+    return <div className="shadow-md rounded text-center">No data available</div>;
+  }
+
+  const editData = (o) => {
+    onEdit(o)
+  }
+
+  const deleteData = (o) => {
+    onDelete(o)
   }
 
   return (
@@ -11,11 +22,18 @@ const Lists = ({ data, columns }) => {
             <th
               key={index}
               scope="col"
-              className='px-6 py-3 text-xs font-medium tracking-wider text-center text-gray-500'
-            >
+              className={column.class ?
+                `px-6 py-3 text-xs font-medium tracking-wider ${column.class} text-gray-500` :
+                `px-6 py-3 text-xs font-medium tracking-wider text-center text-gray-500`}
+            >`
               {column.header}
             </th>
           ))}
+            <th
+              className="px-6 py-3 text-xs font-medium tracking-wider text-center text-gray-500"
+            >
+              #
+            </th>
         </tr>
       </thead>
       <tbody className="bg-white divide-y divide-gray-200">
@@ -27,11 +45,26 @@ const Lists = ({ data, columns }) => {
             {columns.map((column, colIndex) => (
               <td
                 key={colIndex}
-                className="px-6 py-4 whitespace-nowrap"
+                className={column.class ? `px-6 py-4 whitespace-nowrap ${column.class}` : "px-6 py-4 whitespace-nowrap"}
               >
                 {row[column.accessor]}
               </td>
             ))}
+            <td className='text-center'>
+              <button
+                className='text-yellow-500'
+                onClick={editData(row)}
+              >
+                <FontAwesomeIcon icon={faPencil}/>
+              </button>
+                &nbsp;|&nbsp;
+              <button
+                className="text-red-500"
+                onClick={deleteData(row)}
+              >
+                <FontAwesomeIcon icon={faEraser}/>
+              </button>
+            </td>
           </tr>
         ))}
       </tbody>

@@ -24,10 +24,10 @@ const Layout = () => {
             "flex items-center justify-between flex-shrink-0 p-2" :
             "flex items-center justify-between flex-shrink-0 p-2 lg:justify-center"
           }>
-            <span className="p-2 text-xl font-semibold leading-8 tracking-wider uppercase whitespace-nowrap">
-              K<span className={isSidebarOpen ? ""
+            <span className="p-2 text-xl font-semibold leading-8 tracking-wider whitespace-nowrap">
+              H<span className={isSidebarOpen ? ""
                 : "lg:hidden"
-              }>-WD</span>
+              }>airy</span>
             </span>
           </div>
           {/* Sidebar links */}
@@ -66,6 +66,17 @@ const Layout = () => {
                   </span>
                   <span className={isSidebarOpen ? "" : "lg:hidden"}>Brands</span></a>
               </li>
+              <li>
+              <a href="/vouchers"
+                className={isSidebarOpen ?
+                  "flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100" :
+                  "flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100 justify-center"
+                }>
+                  <span>
+                    <FontAwesomeIcon icon={faTable} />
+                  </span>
+                  <span className={isSidebarOpen ? "" : "lg:hidden"}>Vouchers</span></a>
+              </li>
             </ul>
           </nav>
         </aside>
@@ -95,7 +106,7 @@ const Layout = () => {
           </main>
           {/* Main footer */}
           <footer className="flex items-center justify-between flex-shrink-0 p-4 border-t max-h-14">
-            <div>K-WD &copy; 2025</div>
+            <div>Hairy &copy; 2025</div>
             <div class="text-sm">
               Made by&nbsp;
               <a

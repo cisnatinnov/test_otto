@@ -5,6 +5,7 @@ const { success, created, error } = require('../middlewares/response')
 const { celebrate } = require('celebrate')
 const { voucherSchema } = require('../middlewares/schema')
 const Voucher = require('../models/voucherModel')
+const moment = require('moment')
 
 app.post('', celebrate({body: voucherSchema}), async(req, res) => {
   let { brand_id, name, point_value } = req.body
@@ -66,7 +67,14 @@ app.get('', async(_req, res) => {
   try {
     const voucher = await Voucher.findAll()
     let vouchers = voucher.map(voucher => voucher.toJSON());
-    success(res, '', vouchers)
+    let lists = vouchers.map(list => {
+      return {
+        ...list,
+        createdAt: moment(list.created_at).format('LLLL'),
+        updatedAt: moment(list.updated_at).format('LLLL')
+      }
+    })
+    success(res, '', lists)
   } catch (err) {
     error(res, err)
   }
